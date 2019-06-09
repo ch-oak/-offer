@@ -1,5 +1,5 @@
 ﻿// 12：矩阵中的路径.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
-//
+//https://www.nowcoder.com/practice/c61c6999eecb4b8f88a98f66b273a3cc?tpId=13&tqId=11218&tPage=4&rp=4&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
 
 #include "pch.h"
 #include <iostream>
@@ -35,7 +35,7 @@ private:
 				hasPathFunc(matrix, rows, cols, row + 1, col, str, len, visited) ||
 				hasPathFunc(matrix, rows, cols, row, col - 1, str, len, visited) ||
 				hasPathFunc(matrix, rows, cols, row, col + 1, str, len, visited);//或操作类似循环，当一个不满足时会进行下一个判断
-			if (!temp) {
+			if (!temp) {//上下左右都不走的时候说明不能走这个点
 				len--;
 				visited[row][col] = false;
 			}
