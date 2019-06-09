@@ -7,7 +7,7 @@
 #include <iostream>
 
 using namespace std;
-
+//旋转数组的最小数字，两种特殊情况
 
 class Solution {
 public:
