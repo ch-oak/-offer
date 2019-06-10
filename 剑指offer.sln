@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "14：剪绳子", "14：剪�
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "15：二进制中1的个数", "15：二进制中1的个数\15：二进制中1的个数.vcxproj", "{4EBC0E40-49A9-46FA-840E-7D4C7625BBB3}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "16：数值的整数次方", "16：数值的整数次方\16：数值的整数次方.vcxproj", "{3AD4F07C-BE81-46F9-A2A1-8F3F7FB90911}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -61,6 +63,14 @@ Global
 		{4EBC0E40-49A9-46FA-840E-7D4C7625BBB3}.Release|x64.Build.0 = Release|x64
 		{4EBC0E40-49A9-46FA-840E-7D4C7625BBB3}.Release|x86.ActiveCfg = Release|Win32
 		{4EBC0E40-49A9-46FA-840E-7D4C7625BBB3}.Release|x86.Build.0 = Release|Win32
+		{3AD4F07C-BE81-46F9-A2A1-8F3F7FB90911}.Debug|x64.ActiveCfg = Debug|x64
+		{3AD4F07C-BE81-46F9-A2A1-8F3F7FB90911}.Debug|x64.Build.0 = Debug|x64
+		{3AD4F07C-BE81-46F9-A2A1-8F3F7FB90911}.Debug|x86.ActiveCfg = Debug|Win32
+		{3AD4F07C-BE81-46F9-A2A1-8F3F7FB90911}.Debug|x86.Build.0 = Debug|Win32
+		{3AD4F07C-BE81-46F9-A2A1-8F3F7FB90911}.Release|x64.ActiveCfg = Release|x64
+		{3AD4F07C-BE81-46F9-A2A1-8F3F7FB90911}.Release|x64.Build.0 = Release|x64
+		{3AD4F07C-BE81-46F9-A2A1-8F3F7FB90911}.Release|x86.ActiveCfg = Release|Win32
+		{3AD4F07C-BE81-46F9-A2A1-8F3F7FB90911}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
