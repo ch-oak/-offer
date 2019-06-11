@@ -21,6 +21,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "18：删除链表中的节�
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "19：正则表达式匹配", "19：正则表达式匹配\19：正则表达式匹配.vcxproj", "{67925CF3-0F60-4900-80C3-BB9E9A423B27}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "20：表示数值的字符串", "20：表示数值的字符串\20：表示数值的字符串.vcxproj", "{8618319F-5982-4CAA-88C8-AB25AA354D98}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -101,6 +103,14 @@ Global
 		{67925CF3-0F60-4900-80C3-BB9E9A423B27}.Release|x64.Build.0 = Release|x64
 		{67925CF3-0F60-4900-80C3-BB9E9A423B27}.Release|x86.ActiveCfg = Release|Win32
 		{67925CF3-0F60-4900-80C3-BB9E9A423B27}.Release|x86.Build.0 = Release|Win32
+		{8618319F-5982-4CAA-88C8-AB25AA354D98}.Debug|x64.ActiveCfg = Debug|x64
+		{8618319F-5982-4CAA-88C8-AB25AA354D98}.Debug|x64.Build.0 = Debug|x64
+		{8618319F-5982-4CAA-88C8-AB25AA354D98}.Debug|x86.ActiveCfg = Debug|Win32
+		{8618319F-5982-4CAA-88C8-AB25AA354D98}.Debug|x86.Build.0 = Debug|Win32
+		{8618319F-5982-4CAA-88C8-AB25AA354D98}.Release|x64.ActiveCfg = Release|x64
+		{8618319F-5982-4CAA-88C8-AB25AA354D98}.Release|x64.Build.0 = Release|x64
+		{8618319F-5982-4CAA-88C8-AB25AA354D98}.Release|x86.ActiveCfg = Release|Win32
+		{8618319F-5982-4CAA-88C8-AB25AA354D98}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
