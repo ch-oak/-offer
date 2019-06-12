@@ -12,6 +12,8 @@ struct ListNode{
 	ListNode* next;
 	ListNode(int val) :val(val), next(NULL) {};
 };
+
+//直接用下一个节点要删除的节点，并删除下一个节点
 class Solution1 {
 	void deleteNode(ListNode** head, ListNode* toBeDelete) {
 		if (toBeDelete->next != NULL) {//删除节点不是尾节点
@@ -37,6 +39,7 @@ class Solution1 {
 	}
 };
 
+//删除重复的节点，不保留重复的节点
 class Solution {
 public:
 	ListNode* deleteDuplication(ListNode* pHead)
