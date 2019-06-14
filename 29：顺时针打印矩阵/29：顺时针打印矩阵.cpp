@@ -16,7 +16,7 @@ public:
 		int cols = matrix[0].size();
 		int start = 0;
 		vector<int> res;
-		while (rows > start * 2 && cols > start * 2) {
+		while (rows > start * 2 && cols > start * 2) {//终止条件
 			printCircle(res, matrix, rows, cols, start);
 			start++;
 		}
@@ -28,6 +28,8 @@ private:
 		int endCol = cols - 1 - start;
 		for (int i = start; i <= endCol; i++)//第一步
 			res.push_back(matrix[start][i]);
+
+
 		if (endRow > start) {//第二步
 			for (int i = start + 1; i <= endRow; i++)
 				res.push_back(matrix[i][endCol]);
