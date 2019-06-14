@@ -36,7 +36,7 @@ private:
 			for (int i = endCol - 1; i >= start; --i)
 				res.push_back(matrix[endRow][i]);
 		}
-		if (endRow > start&&endCol - start > 1) {//第四步
+		if (endRow > start+1&&endCol>start) {//第四步
 			for (int i = endRow - 1; i > start; i--)
 				res.push_back(matrix[i][start]);
 		}
