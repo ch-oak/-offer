@@ -23,7 +23,7 @@
     <ClCompile Include="pch.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="25：合并两个排序的链表.cpp">
+    <ClCompile Include="34：二叉树中和为某一值的路径.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
