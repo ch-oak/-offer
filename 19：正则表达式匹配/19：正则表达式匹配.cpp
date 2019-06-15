@@ -27,9 +27,13 @@ public:
 	}
 
 };
-
+void test(int a, int b = 7, char c = '*') {
+	cout << b << endl;
+	cout << "test" << endl;
+}
 int main()
 {
+	test(6, '#');
 	char str[] = "";
 	char pattern[] = ".";
 	cout << Solution().match(str, pattern);

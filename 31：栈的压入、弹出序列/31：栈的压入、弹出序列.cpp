@@ -3,6 +3,37 @@
 
 #include "pch.h"
 #include <iostream>
+#include <vector>
+#include <stack>
+
+using namespace std;
+
+class Solution {
+public:
+	bool IsPopOrder(vector<int> pushV, vector<int> popV) {
+		if (pushV.empty() && popV.empty())
+			return true;
+		stack<int> data;
+		int len = popV.size();
+		int i = 0;
+		int j = 0;
+		while(j<len) {//循环结束的条件为出栈序列走到尽头
+			//往栈里压元素，直到栈顶元素与出栈序列相等
+			while (data.empty() || data.top() != popV[j]) {
+				if (i == len)
+					break;
+				data.push(pushV[i++]);
+			}
+			if (data.top() != popV[j])
+				break;
+			data.pop();
+			j++;
+		}
+		if (data.empty() && j == len)
+			return true;
+		return false;
+	}
+};
 
 int main()
 {
