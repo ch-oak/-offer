@@ -6,21 +6,58 @@
 *（注意，输出结果中请不要返回参数中的节点引用，否则判题程序会直接返回空）
 */
 
+
 #include "pch.h"
 #include <iostream>
+#include <map>
+
+using namespace std;
+
+struct RandomListNode {
+	int label;
+	struct RandomListNode *next, *random;
+	RandomListNode(int x) :
+			label(x), next(NULL), random(NULL) {
+	}
+};
+
+class Solution {
+public:
+	RandomListNode* Clone(RandomListNode* pHead)
+	{
+		RandomListNode* pRes = new RandomListNode(0);
+		bool flag = true;
+		RandomListNode* cur = pHead;
+		RandomListNode* preCopy = pRes;
+		RandomListNode* curCopy;
+		map<RandomListNode*, RandomListNode*> note;
+		while (cur) {
+			curCopy = new RandomListNode(cur->label);
+			preCopy->next = curCopy;
+			preCopy = curCopy;
+			note[cur] = curCopy;
+
+			cur = cur->next;
+		}
+		curCopy = pRes->next;
+		cur = pHead;
+		while (curCopy) {
+			if(cur->random)
+				curCopy->random = note[cur->random];
+			curCopy = curCopy->next;
+			cur = cur->next;
+		}
+		auto res = pRes->next;
+		delete pRes;
+		return res;
+	}
+};
+
+
 
 int main()
 {
+	RandomListNode* temp = new RandomListNode(0);
+	Solution().Clone(temp);
     std::cout << "Hello World!\n"; 
 }
-
-// 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
-// 调试程序: F5 或调试 >“开始调试”菜单
-
-// 入门提示: 
-//   1. 使用解决方案资源管理器窗口添加/管理文件
-//   2. 使用团队资源管理器窗口连接到源代码管理
-//   3. 使用输出窗口查看生成输出和其他消息
-//   4. 使用错误列表窗口查看错误
-//   5. 转到“项目”>“添加新项”以创建新的代码文件，或转到“项目”>“添加现有项”以将现有代码文件添加到项目
-//   6. 将来，若要再次打开此项目，请转到“文件”>“打开”>“项目”并选择 .sln 文件
