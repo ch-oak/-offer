@@ -31,16 +31,17 @@ public:
 private:
 	int find(int index, int digits, int nums) {
 		int start = digits > 1 ? pow(10, digits - 1) : 0;
-		int offset = (index - nums + pow(10, digits - 1) * 9 * digits) / digits;
-		int pos = (int)(index - nums + pow(10, digits - 1) * 9 * digits) % digits;//
+		int temp = digits > 1 ? nums - pow(10, digits - 1) * 9 * digits : 0;
+		int offset = (index - temp ) / digits;
+		int pos = (int)(index - temp) % digits;//
 		int res = 0;
 		if (pos == 0) {
-			int temp = offset + start;
+			int temp = offset + start - 1;
 			string str = to_string(temp);
-			res = str[0] - '0';
+			res = str[digits-1] - '0';
 		}
 		else {
-			int temp = offset + start + 1;
+			int temp = offset + start;
 			string str = to_string(temp);
 			res = str[pos - 1] - '0';
 		}
@@ -50,7 +51,12 @@ private:
 
 int main()
 {
-	cout << Solution().digit(811) << endl;
+	string str;
+	for (int i = 0; i < 1000; i++) {
+		str += to_string(i);
+	}
+	cout << str[1001] << endl;
+	cout << Solution().digit(1001) << endl;
     std::cout << "Hello World!\n"; 
 }
 
