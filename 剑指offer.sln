@@ -83,6 +83,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "50：第一次只出现一�
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "51：数组中的逆序对", "51：数组中的逆序对\51：数组中的逆序对.vcxproj", "{129F0CE1-CC70-48EF-951F-64CD1FCEB153}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "52：两个链表中的第一个公共节点", "52：两个链表中的第一个公共节点\52：两个链表中的第一个公共节点.vcxproj", "{9E2ED8D0-7E59-4329-AC7D-D40ACB08670C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -411,6 +413,14 @@ Global
 		{129F0CE1-CC70-48EF-951F-64CD1FCEB153}.Release|x64.Build.0 = Release|x64
 		{129F0CE1-CC70-48EF-951F-64CD1FCEB153}.Release|x86.ActiveCfg = Release|Win32
 		{129F0CE1-CC70-48EF-951F-64CD1FCEB153}.Release|x86.Build.0 = Release|Win32
+		{9E2ED8D0-7E59-4329-AC7D-D40ACB08670C}.Debug|x64.ActiveCfg = Debug|x64
+		{9E2ED8D0-7E59-4329-AC7D-D40ACB08670C}.Debug|x64.Build.0 = Debug|x64
+		{9E2ED8D0-7E59-4329-AC7D-D40ACB08670C}.Debug|x86.ActiveCfg = Debug|Win32
+		{9E2ED8D0-7E59-4329-AC7D-D40ACB08670C}.Debug|x86.Build.0 = Debug|Win32
+		{9E2ED8D0-7E59-4329-AC7D-D40ACB08670C}.Release|x64.ActiveCfg = Release|x64
+		{9E2ED8D0-7E59-4329-AC7D-D40ACB08670C}.Release|x64.Build.0 = Release|x64
+		{9E2ED8D0-7E59-4329-AC7D-D40ACB08670C}.Release|x86.ActiveCfg = Release|Win32
+		{9E2ED8D0-7E59-4329-AC7D-D40ACB08670C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
