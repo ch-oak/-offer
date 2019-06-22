@@ -87,7 +87,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "52：两个链表中的第�
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "63：股票的最大利润", "63：股票的最大利润\63：股票的最大利润.vcxproj", "{8FB7B293-DA23-493F-938F-E77CADBB9877}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "0：基本数据结构与算法", "0：基本数据结构与算法\0：基本数据结构与算法.vcxproj", "{1FE78500-A42B-40FD-8BFF-36D4741B2B56}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "00：基本数据结构与算法", "0：基本数据结构与算法\0：基本数据结构与算法.vcxproj", "{1FE78500-A42B-40FD-8BFF-36D4741B2B56}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "53：在排序数组中查找数字", "53：在排序数组中查找数字\53：在排序数组中查找数字.vcxproj", "{68289743-F09C-40BA-A9E0-E5C17EC213D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -441,6 +443,14 @@ Global
 		{1FE78500-A42B-40FD-8BFF-36D4741B2B56}.Release|x64.Build.0 = Release|x64
 		{1FE78500-A42B-40FD-8BFF-36D4741B2B56}.Release|x86.ActiveCfg = Release|Win32
 		{1FE78500-A42B-40FD-8BFF-36D4741B2B56}.Release|x86.Build.0 = Release|Win32
+		{68289743-F09C-40BA-A9E0-E5C17EC213D5}.Debug|x64.ActiveCfg = Debug|x64
+		{68289743-F09C-40BA-A9E0-E5C17EC213D5}.Debug|x64.Build.0 = Debug|x64
+		{68289743-F09C-40BA-A9E0-E5C17EC213D5}.Debug|x86.ActiveCfg = Debug|Win32
+		{68289743-F09C-40BA-A9E0-E5C17EC213D5}.Debug|x86.Build.0 = Debug|Win32
+		{68289743-F09C-40BA-A9E0-E5C17EC213D5}.Release|x64.ActiveCfg = Release|x64
+		{68289743-F09C-40BA-A9E0-E5C17EC213D5}.Release|x64.Build.0 = Release|x64
+		{68289743-F09C-40BA-A9E0-E5C17EC213D5}.Release|x86.ActiveCfg = Release|Win32
+		{68289743-F09C-40BA-A9E0-E5C17EC213D5}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
