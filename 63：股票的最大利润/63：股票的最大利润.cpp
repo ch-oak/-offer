@@ -2,12 +2,15 @@
 //
 
 #include "pch.h"
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 
 
 
 int main()
 {
+	
+	printf("%.3f", 0.1255);
     std::cout << "Hello World!\n"; 
 }
 
