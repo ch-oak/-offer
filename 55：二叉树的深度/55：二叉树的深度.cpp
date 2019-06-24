@@ -46,7 +46,7 @@ private:
 		if (IsBalance(pRoot->left, left) && IsBalance(pRoot->right, right)) {
 			int diff = left - right;
 			if (diff <= 1 && diff >= -1) {
-				Depth = 1 + left > right ? left : right;
+				Depth = 1 + (left > right ? left : right);
 				return true;
 			}
 		}
