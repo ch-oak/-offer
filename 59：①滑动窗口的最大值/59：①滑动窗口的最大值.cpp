@@ -4,6 +4,7 @@
 #include "pch.h"
 #include <iostream>
 #include <vector>
+#include <deque>
 
 using namespace std;
 class Solution {
@@ -16,7 +17,20 @@ public:
 	*/
 	vector<int> maxInWindows(const vector<int>& num, unsigned int size)
 	{
-
+		if (num.empty() && size > num.size())
+			return {};
+		vector<int> res;
+		deque<int> list;
+		for (int i = 0; i < num.size(); i++) {
+			if (!list.empty() && i - list.front() == size)//新插入的元素需要右移窗口
+				list.pop_front();
+			while (!list.empty() && num[list.back()] < num[i])//把当前窗口最大值放在队首
+				list.pop_back();
+			list.push_back(i);
+			if (i >= size - 1)
+				res.push_back(num[list.front()]);
+		}
+		return res;
 	}
 };
 

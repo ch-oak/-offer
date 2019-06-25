@@ -1,43 +1,42 @@
-﻿// 57：和为s的数字.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
+﻿// 62：圆圈中最后剩下的数字.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
 //
 
 #include "pch.h"
 #include <iostream>
-#include <vector>
-#include <algorithm>
+#include <list>
 
 using namespace std;
 
-
 class Solution {
 public:
-	/*
-	输入一个递增排序的数组和一个数字S，在数组中查找两个数，使得他们的和正好是S，如果有多对数字的和等于S，输出两个数的乘积最小的。
-	*/
-	//先排序，首尾指针移动
-	vector<int> FindNumbersWithSum(vector<int> array, int sum) {
-		sort(array.begin(), array.end());
-		int start = 0;
-		int end = array.size() - 1;
-		vector<int> res;
-		while (start <= end) {
-			int temp = array[start] + array[end];
-			if (temp < sum)
-				++start;
-			else if (temp > sum)
-				--end;
-			else {
-				res.push_back(array[start]);
-				res.push_back(array[end]);
-				break;
+	int LastRemaining_Solution(int n, int m)
+	{
+		if (n < 1 || m < 0)
+			return -1;
+		list<int> circle(n);
+		int i = 0;
+		for (list<int>::iterator beg = circle.begin(); beg != circle.end(); beg++)//list的迭代器不能做差
+			*beg = i++;
+		list<int>::iterator beg = circle.begin();
+		while (circle.size() > 1) {
+			for (i = 0; i < m - 1; i++) {
+				beg++;
+				if (beg == circle.end())
+					beg = circle.begin();
 			}
+
+			beg = circle.erase(beg);
+			if (beg == circle.end())
+				beg = circle.begin();
+
 		}
-		return res;
+		return *circle.begin();
 	}
 };
 
 int main()
 {
+	cout << Solution().LastRemaining_Solution(5, 3);
     std::cout << "Hello World!\n"; 
 }
 
