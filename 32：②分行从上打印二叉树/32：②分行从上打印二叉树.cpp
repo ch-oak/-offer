@@ -1,4 +1,4 @@
-﻿// 32：从上到下打印二叉树.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
+﻿// 32：②分行从上打印二叉树.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
 //
 
 #include "pch.h"
@@ -12,27 +12,7 @@ struct TreeNode {
 	struct TreeNode *left;
 	struct TreeNode *right;
 	TreeNode(int x) :
-			val(x), left(NULL), right(NULL) {
-	}
-};
-class Solution {
-public:
-	vector<int> PrintFromTopToBottom(TreeNode* root) {
-		vector<int> res;
-		if (!root)
-			return res;
-		queue<TreeNode*> q;
-		q.push(root);
-		while (!q.empty()) {//利用队列先进先出的性质，保存子节点
-			auto temp = q.front();
-			res.push_back(temp->val);
-			q.pop();
-			if (temp->left)
-				q.push(temp->left);
-			if (temp->right)
-				q.push(temp->right);
-		}
-		return res;
+		val(x), left(NULL), right(NULL) {
 	}
 };
 
@@ -62,7 +42,5 @@ public:
 
 int main()
 {
-    std::cout << "Hello World!\n"; 
+	std::cout << "Hello World!\n";
 }
-
-
