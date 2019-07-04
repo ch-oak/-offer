@@ -1,4 +1,5 @@
 ﻿// 18：删除链表中的节点.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
+//https://www.nowcoder.com/practice/623a5ac0ea5b4e5f95552655361ae0a8?tpId=13&tqId=11203&tPage=3&rp=3&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking
 //①在O(1)时间内删除链表中的节点
 //②删除链表中重复的节点
 
@@ -39,7 +40,10 @@ class Solution1 {
 	}
 };
 
-//删除重复的节点，不保留重复的节点
+/*
+在一个排序的链表中，存在重复的结点，请删除该链表中重复的结点，重复的结点不保留，
+返回链表头指针。 例如，链表1->2->3->3->4->4->5 处理后为 1->2->5
+*/
 class Solution {
 public:
 	ListNode* deleteDuplication(ListNode* pHead)
@@ -57,7 +61,7 @@ public:
 				pre = cur;
 				cur = cur->next;
 			}
-			else {
+			else {//如果有相同节点
 				int val = cur->val;
 				ListNode* del = cur;
 				while (del && del->val == val) {
@@ -66,7 +70,7 @@ public:
 					del = next;
 				}
 				if (!pre)
-					pHead = next;
+					pHead = next;//一开始就有重复
 				else {
 					pre->next = next;//连接
 				}
@@ -88,13 +92,3 @@ int main()
     std::cout << "Hello World!\n"; 
 }
 
-// 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
-// 调试程序: F5 或调试 >“开始调试”菜单
-
-// 入门提示: 
-//   1. 使用解决方案资源管理器窗口添加/管理文件
-//   2. 使用团队资源管理器窗口连接到源代码管理
-//   3. 使用输出窗口查看生成输出和其他消息
-//   4. 使用错误列表窗口查看错误
-//   5. 转到“项目”>“添加新项”以创建新的代码文件，或转到“项目”>“添加现有项”以将现有代码文件添加到项目
-//   6. 将来，若要再次打开此项目，请转到“文件”>“打开”>“项目”并选择 .sln 文件

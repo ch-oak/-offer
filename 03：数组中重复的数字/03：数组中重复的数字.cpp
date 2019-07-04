@@ -10,12 +10,11 @@ using namespace std;
 
 class Solution {
 public:
-	// Parameters:
-	//        numbers:     an array of integers
-	//        length:      the length of array numbers
-	//        duplication: (Output) the duplicated number in the array number
-	// Return value:       true if the input is valid, and there are some duplications in the array number
-	//                     otherwise false
+/*
+在一个长度为n的数组里的所有数字都在0到n-1的范围内。 数组中某些数字是重复的，但不知道有几个数字是重复的。
+也不知道每个数字重复几次。请找出数组中任意一个重复的数字。 例如，如果输入长度为7的数组{2,3,1,0,2,5,3}，
+那么对应的输出是第一个重复的数字2。
+*/
 	bool duplicate1(int numbers[], int length, int* duplication) {//使用hash表记录所有数字
 		vector<int> note(length, -1);
 		bool res = false;
@@ -30,7 +29,8 @@ public:
 		}
 		return res;
 	}
-	bool duplicate(int numbers[], int length, int* duplication) {//数字的范围正好与下标的范围相同,比较下标和下标内存的值
+	//数字的范围正好与下标的范围相同,比较下标和下标内存的值
+	bool duplicate(int numbers[], int length, int* duplication) {
 		vector<int> note(length, -1);
 		bool res = false;
 		for (int i = 0; i < length;i++) {
@@ -56,14 +56,3 @@ int main()
 	Solution().duplicate(numbers, 5, &dup);
     std::cout << "Hello World!\n"; 
 }
-
-// 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
-// 调试程序: F5 或调试 >“开始调试”菜单
-
-// 入门提示: 
-//   1. 使用解决方案资源管理器窗口添加/管理文件
-//   2. 使用团队资源管理器窗口连接到源代码管理
-//   3. 使用输出窗口查看生成输出和其他消息
-//   4. 使用错误列表窗口查看错误
-//   5. 转到“项目”>“添加新项”以创建新的代码文件，或转到“项目”>“添加现有项”以将现有代码文件添加到项目
-//   6. 将来，若要再次打开此项目，请转到“文件”>“打开”>“项目”并选择 .sln 文件

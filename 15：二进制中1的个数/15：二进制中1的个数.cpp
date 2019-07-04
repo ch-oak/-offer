@@ -1,12 +1,16 @@
 ﻿// 15：二进制中1的个数.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
-//
+//https://www.nowcoder.com/practice/8ee967e43c2c4ec193b040ea7fbb10b8?tpId=13&tqId=11164&tPage=1&rp=3&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking
 
 #include "pch.h"
 #include <iostream>
 #include <vector>
 
 using namespace std;
+/*
+输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。
+*/
 
+//1不断左移和目标相与
 class Solution {
 public:
 	int  NumberOf1(int n) {
@@ -21,21 +25,8 @@ public:
 	}
 };
 
-
-class Solution {
-public:
-	int  NumberOf1(int n) {
-		int count = 0;
-		unsigned int flag = 1;
-		while (flag) {
-			if (flag&n)
-				count++;
-			flag <<= 1;
-		}
-		return count;
-	}
-};
-
+//与减去1的自己相与相当于把最右边的1变为0
+//记录多少次可以将目标变为0
 class Solution {
 public:
 	int  NumberOf1(int n) {
@@ -53,13 +44,3 @@ int main()
     std::cout << "Hello World!\n"; 
 }
 
-// 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
-// 调试程序: F5 或调试 >“开始调试”菜单
-
-// 入门提示: 
-//   1. 使用解决方案资源管理器窗口添加/管理文件
-//   2. 使用团队资源管理器窗口连接到源代码管理
-//   3. 使用输出窗口查看生成输出和其他消息
-//   4. 使用错误列表窗口查看错误
-//   5. 转到“项目”>“添加新项”以创建新的代码文件，或转到“项目”>“添加现有项”以将现有代码文件添加到项目
-//   6. 将来，若要再次打开此项目，请转到“文件”>“打开”>“项目”并选择 .sln 文件

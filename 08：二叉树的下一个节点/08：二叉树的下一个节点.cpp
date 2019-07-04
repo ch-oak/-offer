@@ -25,7 +25,7 @@ public:
 	{
 		if (!pNode)
 			return NULL;
-		TreeLinkNode* res = NULL;
+		TreeLinkNode* res = NULL;//可能是最后一个节点，没有下一个节点了
 		if (pNode->right) {//有右子树，下一个节点为右子树最左边的节点
 			TreeLinkNode* temp = pNode->right;
 			while (temp->left)

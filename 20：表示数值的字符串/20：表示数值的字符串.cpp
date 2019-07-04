@@ -1,31 +1,36 @@
 ﻿// 20：表示数值的字符串.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
 //
+
+
+#include "pch.h"
+#include <iostream>
+
+
+/*
+请实现一个函数用来判断字符串是否表示数值（包括整数和小数）。例如，
+字符串"+100","5e2","-123","3.1416"和"-1E-16"都表示数值。
+但是"12e","1a3.14","1.2.3","+-5"和"12e+4.3"都不是。
+*/
+class Solution {
+public:
 /*
 *A[.[B]][e|EC]或者.B[e|EC]
 *①扫描由0~9组成的数位串A，A前面可以有+或者-
 *②遇到小数点则扫描0~9组成的数位串B，B前面不能有+或者-
 *③遇到e或者E扫描剩下的带符号数位串C,C前面可以有+或者-,e之后的串不能单独存在
 */
-
-#include "pch.h"
-#include <iostream>
-
-class Solution {
-public:
 	bool isNumeric(char* string)
 	{
 		
 		bool flag = false;
-		flag = scanNum(string);
-		if (*string != '\0'&&*string == '.') {
+		flag = scanNum(string);//有无整数部分
+		if (*string != '\0'&&*string == '.') {//扫描小数部分
 			string++;
 			flag = scanUnsignedNum(string)||flag;//注意要先扫描，避免或操作短路
 		}
-		if (*string != '\0' && (*string == 'e' || *string == 'E')) {
+		if (*string != '\0' && (*string == 'e' || *string == 'E')) {//扫描指数部分
 			string++;
 			flag = flag&&scanNum(string);
-
-
 		}
 
 		return flag&&*string=='\0';

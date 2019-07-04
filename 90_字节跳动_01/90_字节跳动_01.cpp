@@ -72,7 +72,9 @@ int main()
 	string res;
 	if (dance > byte)
 		res = "Dance";
-	else
+	else if (dance < byte)
 		res = "Byte";
+	else
+		res = "Draw";
 	cout << res;
 }

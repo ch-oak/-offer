@@ -1,11 +1,13 @@
 ﻿// 17：打印从1到最大的n位数.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
-//
+//无OJ
 
 #include "pch.h"
 #include <iostream>
 
 using namespace std;
-
+/*
+输入数字n，按顺序打印出从1最大的n位十进制数。比如输入3，则打印出1、2、3一直到最大的3位数即999.
+*/
 class Solution {
 public:
 	void print1ToMaxN(int n) {
