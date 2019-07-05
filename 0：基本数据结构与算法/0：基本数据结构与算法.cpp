@@ -34,6 +34,9 @@ public:
 	template <class T>
 	void QuickSort(T arr[], int low, int hight);
 
+	template <class T>
+	void QuickSortNew(T arr[], int low, int high);
+
 	//选择排序 
 	template <class T>
 	void SelectSort(T arr[], int len);
@@ -50,6 +53,9 @@ public:
 	template <class T>
 	void HeapSort(T arr[], int len);
 
+	template <class T>
+	void HeapSortNew(T arr[], int len);
+
 	//二叉排序树排序 
 	template <class T>
 	void TreeSort(T arr[], int len);
@@ -59,9 +65,15 @@ private:
 	template <class T>
 	int Quick(T arr[], int left, int right);
 
+	template <class T>
+	int GetPivot(T arr[], int left, int right);
+
 	//建立堆 
 	template <class T>
 	void CreateHeap(T arr[], int root, int len);
+
+	template <class T>
+	void CreateHeapNew(T arr[], int root,int len);
 
 	//建立二叉排序树 
 	template <class T>
@@ -99,8 +111,9 @@ int main() {
 	cout << endl << endl;
 
 	//sort.SelectSort(arr, LEN);
-	sort.QuickSort(arr, 0,LEN-1);
-
+	//sort.QuickSort(arr, 0,LEN-1);
+	//sort.HeapSortNew(arr, LEN);
+	sort.QuickSortNew(arr,0, LEN-1);
 	//求得最大数的位数，用于排列输出结果 
 	while (len) {
 		width++;
@@ -131,6 +144,7 @@ void Sort::QuickSort(T arr[], int low, int hight) {
 	}
 }
 
+
 //返回中轴点的下标 
 template <class T>
 int Sort::Quick(T arr[], int first, int end) {
@@ -153,6 +167,36 @@ int Sort::Quick(T arr[], int first, int end) {
 		else i++;
 	}
 	swap(arr[j], arr[first]);
+	return j;
+}
+
+
+
+template <class T>
+void Sort::QuickSortNew(T arr[], int low, int high) {
+	int pivot;
+	if (low <= high) {
+		pivot = GetPivot(arr, low, high);
+		QuickSortNew(arr, low, pivot - 1);
+		QuickSortNew(arr, pivot + 1, high);
+	}
+}
+template <class T>
+int Sort::GetPivot(T arr[], int left, int right) {
+	int temp = arr[left];
+	int i = left + 1;
+	int j = right;
+	while (i <= j) {
+		while (arr[i] < temp)
+			i++;
+		while (arr[j] > temp)
+			j--;
+		if (i < j)
+			swap(arr[i++], arr[j--]);
+		else
+			i++;//跳出循环
+	}
+	swap(arr[left], arr[j]);
 	return j;
 }
 
@@ -230,11 +274,12 @@ void Sort::HeapSort(T arr[], int len) {
 		temp[i] = arr[i - 1];
 	}
 
-	//建立子堆 
+	//从最后一个非叶节点开始调整堆 
 	for (i = len / 2; i >= 1; i--) {
 		CreateHeap(temp, i, len);
 	}
 
+	//不断将最大值移动到尾部再调整堆,同时不断缩短堆的长度，因为要保证最大值放到最后之后不再被调整
 	for (i = len - 1; i >= 1; i--) {
 		buff = temp[1];
 		temp[1] = temp[i + 1];
@@ -273,6 +318,39 @@ void Sort::CreateHeap(T arr[], int root, int len) {
 	arr[j / 2] = temp;
 }
 
+
+template <class T>
+void Sort::HeapSortNew(T arr[], int len) {
+	T* temp = (T*)malloc(sizeof(T)*(len+1));
+	for (int i = 0; i < len; i++)
+		temp[i + 1] = arr[i];
+	for (int i = len / 2; i >= 1; i--)
+		CreateHeapNew(temp, i, len);
+	for (int i = len-1; i >= 1; i--) {
+		swap(temp[1], temp[i+1]);
+		CreateHeapNew(temp, 1, i);
+	}
+	for (int i = 0; i < len; i++)
+		arr[i] = temp[i + 1];
+}
+template <class T>
+void Sort::CreateHeapNew(T arr[], int root, int len) {
+	int temp = arr[root];
+	int son = 2 * root;
+	while (son <= len) {
+		if (son < len) {
+			if (arr[son + 1] > arr[son])
+				son++;
+		}
+		if (temp < arr[son]) {
+			arr[son / 2] = arr[son];
+			son *= 2;
+		}
+		else
+			break;
+	}
+	arr[son/2] = temp;
+}
 //////////////////////////////////////////////////////////////////// 
 //二叉排序树排序 
 template <class T>
