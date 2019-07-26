@@ -3,19 +3,43 @@
 
 #include "pch.h"
 #define _CRT_SECURE_NO_WARNINGS
-#include <iostream>
+#include <sstream>
 #include <vector>
 #include <string>
 #include <map>
 #include <unordered_map>
-#include <sstream>
 
+#include <iostream>
+#include <cmath>
 using namespace std;
-
+typedef unsigned long long ull;
 int main()
 {
-	freopen("in.txt", "r", stdin);
-	vector<int> a(26);
+	//freopen("in.txt", "r", stdin);
+	double in;
+	cin >> in;
+	int res = 0;
+	while (in != 1) {
+		double temp = sqrt(in);
+		ull temp_ull = (ull)(temp);
+		double diff = temp - temp_ull;
+		if (diff < 0.0000001) {
+			in = temp;
+			res++;
+		}
+		else {
+			int gap = in - temp_ull * temp_ull;
+			in -= gap;
+			res += gap;
+		}
+	}
+	cout << res << endl;
+	
+
+	//return res;
+}
+
+	/*vector<int> a(26);
 	vector<int> b(26);
 	for (int i = 0; i < 26; i++) {
 		int temp;
@@ -76,5 +100,5 @@ int main()
 		res = "Byte";
 	else
 		res = "Draw";
-	cout << res;
-}
+	cout << res;*/
+//}
