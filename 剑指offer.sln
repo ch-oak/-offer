@@ -153,6 +153,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "92_字节跳动_03", "92_�
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "01：赋值运算符号函数", "01：赋值运算符号函数\01：赋值运算符号函数.vcxproj", "{0E026056-5CE5-4DDF-9662-7C3E3C3C98CC}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "02：实现Singleton模式", "02：实现Singleton模式\02：实现Singleton模式.vcxproj", "{F2E51E88-B172-4737-BEC4-542DDC7C09EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -761,6 +763,14 @@ Global
 		{0E026056-5CE5-4DDF-9662-7C3E3C3C98CC}.Release|x64.Build.0 = Release|x64
 		{0E026056-5CE5-4DDF-9662-7C3E3C3C98CC}.Release|x86.ActiveCfg = Release|Win32
 		{0E026056-5CE5-4DDF-9662-7C3E3C3C98CC}.Release|x86.Build.0 = Release|Win32
+		{F2E51E88-B172-4737-BEC4-542DDC7C09EC}.Debug|x64.ActiveCfg = Debug|x64
+		{F2E51E88-B172-4737-BEC4-542DDC7C09EC}.Debug|x64.Build.0 = Debug|x64
+		{F2E51E88-B172-4737-BEC4-542DDC7C09EC}.Debug|x86.ActiveCfg = Debug|Win32
+		{F2E51E88-B172-4737-BEC4-542DDC7C09EC}.Debug|x86.Build.0 = Debug|Win32
+		{F2E51E88-B172-4737-BEC4-542DDC7C09EC}.Release|x64.ActiveCfg = Release|x64
+		{F2E51E88-B172-4737-BEC4-542DDC7C09EC}.Release|x64.Build.0 = Release|x64
+		{F2E51E88-B172-4737-BEC4-542DDC7C09EC}.Release|x86.ActiveCfg = Release|Win32
+		{F2E51E88-B172-4737-BEC4-542DDC7C09EC}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
