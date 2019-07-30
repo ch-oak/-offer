@@ -38,7 +38,7 @@ private:
 			return false;
 		if (pRoot1->val != pRoot2->val)
 			return false;
-		return isSymmetrical(pRoot1->left, pRoot2->right) && isSymmetrical(pRoot1->right, pRoot2->left);//先序遍历和对称先序遍历结果一致
+		return isSymmetrical(pRoot1->left, pRoot2->right) && isSymmetrical(pRoot1->right, pRoot2->left);//左子树的左孩子与右子树的右孩子相同
 	}
 };
 

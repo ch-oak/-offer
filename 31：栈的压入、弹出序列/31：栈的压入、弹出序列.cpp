@@ -1,5 +1,5 @@
 ﻿// 31：栈的压入、弹出序列.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
-//
+//https://www.nowcoder.com/practice/d77d11405cc7470d82554cb392585106?tpId=13&tqId=11174&tPage=2&rp=1&ru=%2Fta%2Fcoding-interviews&qru=%2Fta%2Fcoding-interviews%2Fquestion-ranking
 
 #include "pch.h"
 #include <iostream>
@@ -21,10 +21,11 @@ public:
 			return true;
 		stack<int> data;
 		int len = popV.size();
-		int i = 0;
-		int j = 0;
+		int i = 0;//入栈下标
+		int j = 0;//出栈下标
 		while(j<len) {//循环结束的条件为出栈序列走到尽头
 			//往栈里压元素，直到栈顶元素与出栈序列相等
+			//模拟入栈出栈过程，如果栈顶与出栈序列不同，就一直往栈里压数字
 			while (data.empty() || data.top() != popV[j]) {
 				if (i == len)
 					break;
@@ -32,10 +33,10 @@ public:
 			}
 			if (data.top() != popV[j])
 				break;
-			data.pop();
+			data.pop();//如果栈顶元素与出栈序列相同，就弹出
 			j++;
 		}
-		if (data.empty() && j == len)
+		if (data.empty() && j == len)//最后栈为空，并且所有元素都入过栈了
 			return true;
 		return false;
 	}
