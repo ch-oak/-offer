@@ -18,18 +18,14 @@ struct TreeNode {
 class Solution {
 public:
 	TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-		TreeNode* cur = root, *res;
-		int left = p->val, right = q->val;
-		while (cur) {
-			int curVal = cur->val;
-			if (curVal > left&&curVal > right)//如果比左右子树都大，则在当前节点的左子树
-				cur = cur->left;
-			else if (curVal < left&&curVal < right)//如果比左右子树都小，则在当前的节点的右子树
-				cur = cur->right;
-			else
-				return cur;
-		}
-		return cur;
+		if (root == NULL || root == p || root == q)
+			return root;
+		TreeNode* left = lowestCommonAncestor(root->left, p, q);
+		TreeNode* right = lowestCommonAncestor(root->right, p, q);
+		if (left&&right)//如果分别在左子树和有子树找到p,q的话，root一定是最低公共祖先
+			return root;
+		else
+			return left ? left : right;
 	}
 };
 

@@ -26,7 +26,7 @@ public:
 				cur = cur->left;
 			else if (curVal < left&&curVal < right)//如果比左右子树都小，则在当前的节点的右子树
 				cur = cur->right;
-			else
+			else//此时cur可能是p,q中的某一个
 				return cur;
 		}
 		return cur;
