@@ -21,28 +21,21 @@ public:
 	ListNode* Merge(ListNode* pHead1, ListNode* pHead2)
 	{
 		ListNode* res = new ListNode(0);
-		ListNode* cur = res;
-		if (!pHead1)
-			return pHead2;
-		if (!pHead2)
-			return pHead1;
-		while (pHead1 && pHead2) {
+		ListNode* head = res;
+		while (pHead1&&pHead2) {//不停的把较小的节点加入结果链表
 			if (pHead1->val <= pHead2->val) {
-				cur->next = pHead1;
+				res->next = pHead1;
 				pHead1 = pHead1->next;
 			}
 			else {
-				cur->next = pHead2;
+				res->next = pHead2;
 				pHead2 = pHead2->next;
 			}
-			cur = cur->next;
+			res = res->next;
 		}
-		cur->next = pHead1 ? pHead1 : pHead2;
-		cur = res->next;
-		delete res;
+		res->next = pHead1 ? pHead1 : pHead2;
+		return head->next;
 
-		return cur;
-		
 	}
 };
 

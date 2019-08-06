@@ -8,36 +8,128 @@
 #include <string>
 #include <map>
 #include <unordered_map>
-
+#include <unordered_set>
+#include <algorithm>
 #include <iostream>
 #include <cmath>
+#include <set>
 using namespace std;
 typedef unsigned long long ull;
+
+
+
+struct Food{
+	int p;
+	int in;
+	int c;
+};
+
+bool mycmp(const Food& left, const Food& right) {
+	return 1.0*left.in / left.p > 1.0*right.in / right.p;
+}
+
 int main()
 {
-	//freopen("in.txt", "r", stdin);
-	double in;
-	cin >> in;
-	int res = 0;
-	while (in != 1) {
-		double temp = sqrt(in);
-		ull temp_ull = (ull)(temp);
-		double diff = temp - temp_ull;
-		if (diff < 0.0000001) {
-			in = temp;
-			res++;
+	freopen("in.txt", "r", stdin);
+
+	int N, T;//种类，钱
+	while (cin >> N >> T) {
+		int n = N;
+		vector<Food> v;
+		int min_p = 0;
+		while (n--) {
+			Food temp;
+			cin >> temp.p >> temp.in >> temp.c;
+			v.push_back(temp);
+			min_p = min(min_p, temp.p);
+		}
+		sort(v.begin(), v.end(), mycmp);
+		int ret = 0;
+		int T_copy = T;
+		for (int i = 0; i < v.size(); i++) {
+			int num = 0;
+			if (T >= v[i].p) num = min(T / v[i].p, v[i].c);
+			else
+				continue;
+			T -= num * v[i].p;
+			ret += num * v[i].in;
+			if (T < min_p)
+				break;
+		}
+		cout << ret << endl;
+	}
+}
+
+	/*int N, times, coff;
+	while (cin >> N >> times >> coff) {
+		int sum = 0;
+		int n = N;
+		while (n--) {
+			int temp;
+			cin >> temp;
+			sum += temp;
+		}
+		int speed_time = coff * 60 * times;
+		int normal_time = (8 - coff) * 60;
+		int total_time = speed_time + normal_time;
+		if (sum > total_time) {
+			cout << 0 << endl;
+			continue;
 		}
 		else {
-			int gap = in - temp_ull * temp_ull;
-			in -= gap;
-			res += gap;
+			if (speed_time >= sum) {
+				if (sum%times == 0)
+					cout << sum / times << endl;
+				else
+					cout << sum / times + 1 << endl;
+				continue;
+			}
+			else {
+				int res = 0;
+				res += speed_time /times ;
+				res += sum - speed_time;
+				cout << res << endl;
+				continue;
+			}
 		}
+	}*/
+
+	//cout << "test" << endl;
+//}
+
+	/*ull a, b,r;
+	cin >> a >> b;
+	if (b > a)
+		swap(a, b);
+	r = a % b;
+	while (r) {
+		a = b;
+		b = r;
+		r = a % b;
 	}
-	cout << res << endl;
+	cout << b;*/
+	//double in;
+	//cin >> in;
+	//int res = 0;
+	//while (in != 1) {
+	//	double temp = sqrt(in);
+	//	ull temp_ull = (ull)(temp);
+	//	double diff = temp - temp_ull;
+	//	if (diff < 0.0000001) {
+	//		in = temp;
+	//		res++;
+	//	}
+	//	else {
+	//		int gap = in - temp_ull * temp_ull;
+	//		in -= gap;
+	//		res += gap;
+	//	}
+	//}
+	//cout << res << endl;
 	
 
 	//return res;
-}
+//}
 
 	/*vector<int> a(26);
 	vector<int> b(26);
