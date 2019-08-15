@@ -14,67 +14,156 @@
 #include <cmath>
 #include <set>
 #include <string>
+#include "limits.h"
 using namespace std;
 typedef unsigned long long ull;
 
-int calc(vector<int> &tower, int left, int right, int h) {
-	if (left > right)
-		return 0;
-	if (left == right)
-		return tower[left] > h;
-	int mid = (left + right) / 2;
-	int left_res = calc(tower, left, mid, h);
-	int right_res = calc(tower, mid + 1, right, h);
-	int res = left_res + right_res;
-	if (mid + 1 < tower.size() && tower[mid + 1]> h && tower[mid] > h)
-		res--;
-	return res;
+vector<vector<int>> p;
+void permu(int start, int end, vector<int> &a) {
+	if (start == end) {
+		for (int i = 0; i < end; i++) {
+			p.push_back(a);
+		}
+	}
+	for (int i = start; i < end; i++) {
+		swap(a[start], a[i]);
+		permu(start + 1, end, a);
+		swap(a[i],a[start]);
+	}
 }
-
-int calc(vector<int> &tower,int h) {
-
-	return calc(tower,0,tower.size()-1,h);
-}
-
-
 
 int main()
 {
+	char a = 65;
+	char str = '\x0000000000000000000041';
+	cout << a << endl;
+	cout << str << endl;
 	freopen("in.txt", "r", stdin);
-
-	int N, Q, n, q;
-	cin >> N;
-	vector<int> tower(N, 0);
-	n = N;
-	int min_w = INT_MAX, max_w = INT_MIN;
-	while (n--) {
-		cin >> tower[N - n - 1];
-		min_w = min(tower[N - n - 1], min_w);
-		max_w = max(tower[N - n - 1], max_w);
+	int n, m;
+	cin >> n >> m;
+	int n_ = n;
+	vector<int> f;
+	vector<int> s;
+	while (n_--) {
+		int temp;
+		cin >> temp;
+		f.push_back(temp);
 	}
-	cin >> Q;
-	vector<int> water(Q, 0);
-	q = Q;
-	while (q--)
-		cin >> water[Q - q - 1];
-	map<int,int> note;
-	for (int i = 0; i < Q; i++) {
-		if (water[i] > max_w)
-			cout << 0 << endl;
-		else if (water[i] < min_w)
-			cout << 1 << endl;
-		else {
-			if (note.find(water[i]) != note.end())
-				cout << note[water[i]] << endl;
-			else {
-				int res = calc(tower, water[i]);
-				cout << res << endl;
-				note.insert({ water[i],res });
-			}
-
-		}
+	n_ = n;
+	while (n_--) {
+		int temp;
+		cin >> temp;
+		s.push_back(temp);
 	}
+	permu(0, m, f);
+	int index, max = 0;
+
+	cout << "test" << endl;
 }
+
+//int main()
+//{
+//	freopen("in.txt", "r", stdin);
+//	int N, M;
+//	cin >> N >> M;
+//	vector<vector<int>> rect(N+2, vector<int>(M+2, 0));
+//	for (int i = 1; i <= N; i++) {
+//		for (int j = 1; j <= M; j++) {
+//			cin >> rect[i][j];
+//		}
+//	}
+//	int res = 0;
+//	res += N * M * 2;
+//	for (int i = 1; i <= N; i++) {
+//		for (int j = 1; j <= M; j++) {
+//			int temp = rect[i][j];
+//			int left = rect[i][j] - rect[i][j-1];
+//			if (left < 0) left = 0;
+//			int up = rect[i][j] - rect[i+1][j];
+//			if (up < 0) up = 0;
+//			int right = rect[i][j] - rect[i][j+1];
+//			if (right < 0) right = 0;
+//			int down = rect[i][j] - rect[i - 1][j];
+//			if (down < 0) down = 0;
+//			res += (left + right + up + down);
+//		}
+//	}
+//	cout << res << endl;
+//}
+
+//int calc(vector<int> &tower, int left, int right, int h) {
+//	if (left > right)
+//		return 0;
+//	if (left == right)
+//		return tower[left] > h;
+//	int mid = (left + right) / 2;
+//	int left_res = calc(tower, left, mid, h);
+//	int right_res = calc(tower, mid + 1, right, h);
+//	int res = left_res + right_res;
+//	if (mid + 1 < tower.size() && tower[mid + 1]> h && tower[mid] > h)
+//		res--;
+//	return res;
+//}
+//
+//int calc(vector<int> &tower,int h) {
+//
+//	return calc(tower,0,tower.size()-1,h);
+//
+//}
+//class Base {
+//public:
+//	Base() { test(); };
+//	~Base() {};
+//	virtual void test() { cout << "test" << endl; }
+//};
+//class Derived:Base {
+//public:
+//	Derived() { test(); cout << "end" << endl; }
+//	virtual void test() { cout << "derived" << endl; }
+//	~Derived(){}
+//};
+//
+//
+//
+//int main()
+//{
+//	Base b;
+//	Derived d;
+//	freopen("in.txt", "r", stdin);
+//
+//	int N, Q, n, q;
+//	cin >> N;
+//	vector<int> tower(N, 0);
+//	n = N;
+//	int min_w = INT_MAX, max_w = INT_MIN;
+//	while (n--) {
+//		cin >> tower[N - n - 1];
+//		min_w = min(tower[N - n - 1], min_w);
+//		max_w = max(tower[N - n - 1], max_w);
+//	}
+//	cin >> Q;
+//	vector<int> water(Q, 0);
+//	q = Q;
+//	while (q--)
+//		cin >> water[Q - q - 1];
+//	map<int,int> note;
+//	for (int i = 0; i < Q; i++) {
+//		if (water[i] > max_w)
+//			cout << 0 << endl;
+//		else if (water[i] < min_w)
+//			cout << 1 << endl;
+//		else {
+//			if (note.find(water[i]) != note.end())
+//				cout << note[water[i]] << endl;
+//			else {
+//				int res = calc(tower, water[i]);
+//				cout << res << endl;
+//				note.insert({ water[i],res });
+//			}
+//
+//		}
+//	}
+//}
 
 //int main()
 //{
