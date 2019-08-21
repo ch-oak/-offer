@@ -16,50 +16,192 @@
 #include <string>
 #include "limits.h"
 using namespace std;
-typedef unsigned long long ull;
 
-vector<vector<int>> p;
-void permu(int start, int end, vector<int> &a) {
-	if (start == end) {
-		for (int i = 0; i < end; i++) {
-			p.push_back(a);
-		}
-	}
-	for (int i = start; i < end; i++) {
-		swap(a[start], a[i]);
-		permu(start + 1, end, a);
-		swap(a[i],a[start]);
-	}
-}
+
+typedef unsigned long long ull;
 
 int main()
 {
-	char a = 65;
-	char str = '\x0000000000000000000041';
-	cout << a << endl;
-	cout << str << endl;
 	freopen("in.txt", "r", stdin);
-	int n, m;
-	cin >> n >> m;
-	int n_ = n;
-	vector<int> f;
-	vector<int> s;
-	while (n_--) {
-		int temp;
-		cin >> temp;
-		f.push_back(temp);
+	string start;
+	cin >> start;
+	int len;
+	cin >> len;
+	set<string> res;
+	map<string, int> note;
+	vector<vector<string>> all;
+	while (len--) {
+		vector<string> temp;
+		string line;
+		getline(cin, line);
+		stringstream ss(line);
+		string t;
+		int pos = 0;
+		while (getline(ss, t, ',')) {
+			temp.push_back(t);
+			if (note.find(t) == note.end())
+				note.insert({ t,pos++ });
+		}
+		all.push_back(temp);
 	}
-	n_ = n;
-	while (n_--) {
-		int temp;
-		cin >> temp;
-		s.push_back(temp);
+	vector<vector<int>> mat(all.size(), vector<int>(all.size(), 0));
+	for (int i = 0; i < all.size(); i++) {
+		for (int j = 1; j < all.size(); j++) {
+			mat[note[all[]]]
+		}
 	}
-	permu(0, m, f);
-	int index, max = 0;
-
-	cout << "test" << endl;
 }
+
+//int main()
+//{
+//	freopen("in.txt", "r", stdin);
+//	string line;
+//	getline(cin,line);
+//	vector<string> in;
+//	stringstream ss(line);
+//	string temp;
+//	vector<string> res;
+//	while (getline(ss, temp, ' ')) {
+//		in.push_back(temp);
+//	}
+//	for (int i = 1; i < in.size(); i++) {
+//		if (in[i] == "A") {
+//			res.push_back("12");
+//			res.push_back("34");
+//		}
+//		else if (in[i] == "B") {
+//			res.push_back("AB");
+//			res.push_back("CB");
+//		}
+//		else {
+//			res.push_back(in[i]);
+//		}
+//			
+//	}
+//	int res_len = res.size() + 1;
+//	string res_str;
+//	while (res_len) {
+//		int temp = res_len % 16;
+//		if (temp < 10)
+//			res_str += to_string(temp);
+//		else
+//			res_str += char('A' + temp - 10);
+//		res_len /= 16;
+//	}
+//	cout << res_str << " ";
+//	for (int i = 0; i < res.size(); i++)
+//		cout << res[i] << " ";
+//}
+//bool isShu(int num) {
+//	for (int i = 2; i*i <= num; i++) {
+//		if (num%i == 0)
+//			return false;
+//	}
+//	return true;
+//}
+//
+//int main()
+//{
+//	freopen("in.txt", "r", stdin);
+//	int low, high;
+//	cin >> low >> high;
+//	int shi = 0, ge = 0;
+//	for (int i = low; i < high - 1; i++) {
+//		if (isShu(i)) {
+//			cout << i << endl;
+//			if (i < 10) {
+//				ge += i;
+//			}
+//			else {
+//				ge += i % 10;
+//				shi += i / 10 % 10;
+//			}
+//		}
+//	}
+//	int res = ge < shi ? ge : shi;
+//	cout << res;
+//}
+
+//int main()
+//{
+//	freopen("in.txt", "r", stdin);
+//	char f;
+//	cin >> f;
+//	int len = 0;
+//	int pos = 0;
+//	while (f) {
+//		int temp = f & 1;
+//		len += pow(2, pos ++ )*temp;
+//		f = f << 1;
+//	}
+//	
+//	int len_copy = len - 1;
+//	char in;
+//	vector<string> res;
+//	while (len_copy--) {
+//		cin >> in;
+//		string temp;
+//		if ((in >= '0'&&in < '9') || (in >= 'C'&&in <= 'F') || (in >= 'c' && in <= 'f')) {
+//			temp += in;
+//			res.push_back(temp);
+//		}
+//		else if (in == 'A' || in == 'a') {
+//			res.push_back("12");
+//			res.push_back("34");
+//		}
+//		else if (in == 'B' || in == 'b') {
+//			res.push_back("AB");
+//			res.push_back("AB");
+//		}
+//	}
+//	cout << res.size() + 1 << " ";
+//	for (int i = 0; i < res.size(); i++) {
+//		cout << res[i]<<" ";
+//	}
+//}
+
+//vector<vector<int>> p;
+//void permu(int start, int end, vector<int> &a) {
+//	if (start == end) {
+//		for (int i = 0; i < end; i++) {
+//			p.push_back(a);
+//		}
+//	}
+//	for (int i = start; i < end; i++) {
+//		swap(a[start], a[i]);
+//		permu(start + 1, end, a);
+//		swap(a[i],a[start]);
+//	}
+//}
+//
+//int main()
+//{
+//	char a = 65;
+//	char str = '\x0000000000000000000041';
+//	cout << a << endl;
+//	cout << str << endl;
+//	freopen("in.txt", "r", stdin);
+//	int n, m;
+//	cin >> n >> m;
+//	int n_ = n;
+//	vector<int> f;
+//	vector<int> s;
+//	while (n_--) {
+//		int temp;
+//		cin >> temp;
+//		f.push_back(temp);
+//	}
+//	n_ = n;
+//	while (n_--) {
+//		int temp;
+//		cin >> temp;
+//		s.push_back(temp);
+//	}
+//	permu(0, m, f);
+//	int index, max = 0;
+//
+//	cout << "test" << endl;
+//}
 
 //int main()
 //{
