@@ -20,37 +20,43 @@ using namespace std;
 
 typedef unsigned long long ull;
 
-int main()
-{
-	freopen("in.txt", "r", stdin);
-	string start;
-	cin >> start;
-	int len;
-	cin >> len;
-	set<string> res;
-	map<string, int> note;
-	vector<vector<string>> all;
-	while (len--) {
-		vector<string> temp;
-		string line;
-		getline(cin, line);
-		stringstream ss(line);
-		string t;
-		int pos = 0;
-		while (getline(ss, t, ',')) {
-			temp.push_back(t);
-			if (note.find(t) == note.end())
-				note.insert({ t,pos++ });
+	
+#include<queue>
+#include<functional>
+	priority_queue<int, vector<int>, greater<int>> Q;
+
+	int main() {
+		unordered_set<int> ui{ 1,3,2,33,44,24 };
+		for (auto beg = ui.begin(); beg != ui.end(); beg++) {
+			cout << *beg << endl;
 		}
-		all.push_back(temp);
-	}
-	vector<vector<int>> mat(all.size(), vector<int>(all.size(), 0));
-	for (int i = 0; i < all.size(); i++) {
-		for (int j = 1; j < all.size(); j++) {
-			mat[note[all[]]]
+
+		freopen("in.txt", "r", stdin);
+		int n;
+		while (cin>>n) {
+			while (!Q.empty()) Q.pop();
+			for (int i = 0; i < n; i++) {
+				int tmp;
+				scanf_s("%d", &tmp);
+				Q.push(tmp);
+			}
+			int ans = 0;
+			while (Q.size() > 1) {
+
+				int a, b;
+				a = Q.top();
+				Q.pop();
+				b = Q.top();
+				Q.pop();
+				ans += (a + b);
+				Q.push(a + b);
+			}
+			printf("%d", ans);
 		}
+		return 0;
 	}
-}
+
+
 
 //int main()
 //{
