@@ -3,8 +3,7 @@
 
 #include "pch.h"
 #include <iostream>
-
-#include <iostream>
+#include <algorithm>
 #include <iomanip> 
 
 #define LEN 100  //排序数的个数 
@@ -25,7 +24,8 @@ public:
 	~Node() {}
 };
 
-//////////////////////////////////////////////////////////////////// 
+////////////////////////////////////////////////////////////////////
+int *aux = (int *)malloc(LEN * sizeof(int));
 class Sort {
 public:
 	Sort() {};
@@ -48,6 +48,28 @@ public:
 	//插入排序 
 	template <class T>
 	void InsertSort(T arr[], int len);
+
+	//归并排序
+	template <class T>
+	void MergeSort(T arr[], int low, int high) {
+		if (low >= high) return;
+		int mid = low + (high - low) / 2;
+		MergeSort(arr, low, mid);
+		MergeSort(arr, mid + 1, high);
+		Merge(arr, low, mid, high);
+	}
+	template <class T>
+	void Merge(T arr[], int low, int mid, int high) {
+		for (int k = low; k <= high; k++)
+			aux[k] = arr[k];
+		int i = low, j = mid + 1;
+		for (int k = low; k <= high; k++) {
+			if (i > mid) arr[k] = aux[j++];
+			else if (j > high) arr[k] = aux[i++];
+			else if (aux[i] < aux[j]) arr[k] = aux[i++];
+			else arr[k] = aux[j++];
+		}
+	}
 
 	//堆排序 
 	template <class T>
@@ -113,7 +135,8 @@ int main() {
 	//sort.SelectSort(arr, LEN);
 	//sort.QuickSort(arr, 0,LEN-1);
 	//sort.HeapSortNew(arr, LEN);
-	sort.QuickSortNew(arr,0, LEN-1);
+	//sort.QuickSortNew(arr,0, LEN-1);
+	sort.MergeSort(arr, 0, LEN - 1);
 	//求得最大数的位数，用于排列输出结果 
 	while (len) {
 		width++;
@@ -214,9 +237,7 @@ void Sort::SelectSort(T arr[], int len) {
 			}
 		}
 		if (index != i) {
-			temp = arr[index];
-			arr[index] = arr[i];
-			arr[i] = temp;
+			swap(arr[index], arr[i]);
 		}
 	}
 }

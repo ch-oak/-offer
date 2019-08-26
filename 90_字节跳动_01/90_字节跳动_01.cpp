@@ -3,58 +3,64 @@
 
 #include "pch.h"
 #define _CRT_SECURE_NO_WARNINGS
-#include <sstream>
+//#include<queue>
+//#include<functional>
+//#include <sstream>
+//#include <vector>
+//#include <string>
+//#include <map>
+//#include <unordered_map>
+//#include <unordered_set>
+//#include <algorithm>
+//#include <iostream>
+//#include <cmath>
+//#include <set>
+//#include <string>
+//#include "limits.h"
+//
+//typedef unsigned long long ull;
+
 #include <vector>
-#include <string>
-#include <map>
-#include <unordered_map>
-#include <unordered_set>
-#include <algorithm>
 #include <iostream>
-#include <cmath>
-#include <set>
-#include <string>
-#include "limits.h"
 using namespace std;
 
-
-typedef unsigned long long ull;
-
-	
-#include<queue>
-#include<functional>
-	priority_queue<int, vector<int>, greater<int>> Q;
-
-	int main() {
-		unordered_set<int> ui{ 1,3,2,33,44,24 };
-		for (auto beg = ui.begin(); beg != ui.end(); beg++) {
-			cout << *beg << endl;
+void dfs(vector<vector<int>> &vec, vector<int> &visited, int start) {
+	for (int i = 0; i < vec[0].size(); i++) {
+		if (visited[i] == 0 && vec[start][i] == 1) {
+			visited[i] = 1;
+			dfs(vec, visited, i);
+			
 		}
-
-		freopen("in.txt", "r", stdin);
-		int n;
-		while (cin>>n) {
-			while (!Q.empty()) Q.pop();
-			for (int i = 0; i < n; i++) {
-				int tmp;
-				scanf_s("%d", &tmp);
-				Q.push(tmp);
-			}
-			int ans = 0;
-			while (Q.size() > 1) {
-
-				int a, b;
-				a = Q.top();
-				Q.pop();
-				b = Q.top();
-				Q.pop();
-				ans += (a + b);
-				Q.push(a + b);
-			}
-			printf("%d", ans);
-		}
-		return 0;
 	}
+}
+
+
+
+
+int main() {
+	//freopen("in.txt", "r", stdin);
+	int N;
+	cin >> N;
+	vector<vector<int>> vec(N,vector<int>(N,0));
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < N; j++) {
+			cin >> vec[i][j];
+			if (vec[i][j] >= 3)
+				vec[i][j] = 1;
+		}
+	}
+	vector<int> visited(N, 0);
+	int res = 0;
+	for (int i = 0; i < N; i++) {
+		if (visited[i] == 0) {
+			res++;
+			dfs(vec, visited, i);
+		}
+	}
+	
+	cout << res << endl;
+	return 0;
+}
 
 
 

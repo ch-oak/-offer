@@ -27,17 +27,21 @@ using namespace std;
 class Singleton{//线程不安全，内存泄漏
 private:
 	Singleton() {}
-	static Singleton* m_instance;
 	Singleton(const Singleton&) = delete;//禁止拷贝
 	Singleton& operator=(const Singleton&) = delete;//禁止复制
+
+	static Singleton* m_instance;
 
 public:
 	static Singleton* getInstance() {
 		if (m_instance == NULL)
-			m_instance = new Singleton;
+			m_instance = new Singleton;//静态成员只能访问静态成员，所以指针必须是静态的。
 		return m_instance;
 	}		
 };
+
+Singleton* Singleton::m_instance = nullptr;
+
 
 class Singleton {//使用互斥量mutex和共享指针
 private:
@@ -45,20 +49,22 @@ private:
 	Singleton(const Singleton&) = delete;//禁止拷贝
 	Singleton& operator=(const Singleton&) = delete;//禁止复制
 
+	static Singleton* m_instance;
+	static mutex m_mutex;
+
 public:
 	static shared_ptr<Singleton> getInstance() {
-		if (m_instance == NULL) {//空才加锁，防止资源浪费
+		if (m_instance == NULL) {//空才加锁，防止资源浪费,双检锁机制
 			lock_guard<mutex> lk(m_mutex);
-			if (m_instance == NULL)//如果不再进行判断，可能会构造两个实例
-				m_instance = shared_ptr<Singleton>(new Singleton);
+			if (m_instance == NULL)
+				m_instance = new Singleton();
 		}
 		return m_instance;
 	}
 
-	static shared_ptr<Singleton> m_instance;
-	static mutex m_mutex;
+
 };
-shared_ptr<Singleton> Singleton::m_instance = nullptr;
+Singleton* Singleton::m_instance = nullptr;
 mutex Singleton::m_mutex;
 
 
@@ -75,15 +81,14 @@ public:
 	}
 }
 
-//
-
 //饿汉式，使用静态成员变量直接创建
 class Singleton {
 private:
 	Singleton() {}
-	static Singleton* m_instance;
 	Singleton(const Singleton&) = delete;//禁止拷贝
 	Singleton& operator=(const Singleton&) = delete;//禁止复制
+
+	static Singleton* m_instance;
 
 public:
 	static Singleton* getInstance() {
@@ -92,20 +97,9 @@ public:
 	}
 };
 
-Singleton* Singleton::instance = new Singleton;
+Singleton* Singleton::instance = new Singleton();
 
 int main()
 {
     std::cout << "Hello World!\n"; 
 }
-
-// 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
-// 调试程序: F5 或调试 >“开始调试”菜单
-
-// 入门提示: 
-//   1. 使用解决方案资源管理器窗口添加/管理文件
-//   2. 使用团队资源管理器窗口连接到源代码管理
-//   3. 使用输出窗口查看生成输出和其他消息
-//   4. 使用错误列表窗口查看错误
-//   5. 转到“项目”>“添加新项”以创建新的代码文件，或转到“项目”>“添加现有项”以将现有代码文件添加到项目
-//   6. 将来，若要再次打开此项目，请转到“文件”>“打开”>“项目”并选择 .sln 文件
