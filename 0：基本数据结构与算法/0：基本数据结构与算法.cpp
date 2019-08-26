@@ -32,10 +32,9 @@ public:
 	~Sort() {};
 	//快速排序 
 	template <class T>
-	void QuickSort(T arr[], int low, int hight);
-
-	template <class T>
 	void QuickSortNew(T arr[], int low, int high);
+	template <class T>
+	int GetPivotNew(T arr[], int left, int right);
 
 	//选择排序 
 	template <class T>
@@ -83,12 +82,6 @@ public:
 	void TreeSort(T arr[], int len);
 
 private:
-	//快速排序中选择中心点 
-	template <class T>
-	int Quick(T arr[], int left, int right);
-
-	template <class T>
-	int GetPivot(T arr[], int left, int right);
 
 	//建立堆 
 	template <class T>
@@ -106,121 +99,32 @@ private:
 	void InTree(Node<T> *root, T arr[]);
 };
 
-//////////////////////////////////////////////////////////////////// 
-int main() {
-	Sort sort;
-	int *arr; 								//需要排序的数组 
-	int width = 0; 							//最大数的位数，用于排列输出结果  
-	int len = LEN; 							//用来求最大数的位数
-	arr = (int *)malloc(LEN * sizeof(int)); //分配空间 
-	if (arr == NULL) {						//空间分配失败 
-		cout << "Malloc failed!" << endl;
-		exit(1);
-	}
 
-	srand(time(NULL));						//设置种子 
-	for (int i = 0; i < LEN; i++) {			//随机生成数字 
-		arr[i] = (rand() % (LEN * 10)) + 1;
-	}
-
-	for (int i = 0; i < LEN; i++) {			//输出排序后的数字 
-		cout << setw(width) << arr[i] << " ";
-		cout << fixed;
-		if ((i + 1) % NUM == 0) {				//每行输出的数字个数 
-			cout << endl;
-		}
-	}
-	cout << endl << endl;
-
-	//sort.SelectSort(arr, LEN);
-	//sort.QuickSort(arr, 0,LEN-1);
-	//sort.HeapSortNew(arr, LEN);
-	//sort.QuickSortNew(arr,0, LEN-1);
-	sort.MergeSort(arr, 0, LEN - 1);
-	//求得最大数的位数，用于排列输出结果 
-	while (len) {
-		width++;
-		len /= 10;
-	}
-
-	for (int i = 0; i < LEN; i++) {			//输出排序后的数字 
-		cout << setw(width) << arr[i] << " ";
-		cout << fixed;
-		if ((i + 1) % NUM == 0) {				//每行输出的数字个数 
-			cout << endl;
-		}
-	}
-
-	cout << endl;
-	return 0;
-}
 
 //////////////////////////////////////////////////////////////////// 
 //快速排序 
 template <class T>
-void Sort::QuickSort(T arr[], int low, int hight) {
-	int pivot = -1;
-	if (low <= hight) {
-		pivot = Quick(arr, low, hight);
-		QuickSort(arr, low, pivot - 1);
-		QuickSort(arr, pivot + 1, hight);
-	}
-}
-
-
-//返回中轴点的下标 
-template <class T>
-int Sort::Quick(T arr[], int first, int end) {
-	int i = first + 1;
-	int j = end;
-	int temp = arr[first];
-
-	while (i <= j)
-	{
-		while (arr[i] < temp)
-		{
-			i++;
-		}
-		while (arr[j] > temp)
-		{
-			j--;
-		}
-		if (i < j)
-			swap(arr[i++], arr[j--]);
-		else i++;
-	}
-	swap(arr[j], arr[first]);
-	return j;
-}
-
-
-
-template <class T>
 void Sort::QuickSortNew(T arr[], int low, int high) {
 	int pivot;
 	if (low <= high) {
-		pivot = GetPivot(arr, low, high);
+		pivot = GetPivotNew(arr, low, high);
 		QuickSortNew(arr, low, pivot - 1);
 		QuickSortNew(arr, pivot + 1, high);
 	}
 }
 template <class T>
-int Sort::GetPivot(T arr[], int left, int right) {
+int Sort::GetPivotNew(T arr[], int left, int right) {
 	int temp = arr[left];
-	int i = left + 1;
-	int j = right;
-	while (i <= j) {
-		while (arr[i] < temp)
-			i++;
-		while (arr[j] > temp)
-			j--;
-		if (i < j)
-			swap(arr[i++], arr[j--]);
-		else
-			i++;//跳出循环
+	while (left < right) {
+		while (left < right&&arr[right] >= temp)
+			right--;
+		arr[left] = arr[right];
+		while (left < right&&arr[left] <= temp)
+			left++;
+		arr[right] = arr[left];
 	}
-	swap(arr[left], arr[j]);
-	return j;
+	arr[left] = temp;
+	return left;
 }
 
 //////////////////////////////////////////////////////////////////// 
@@ -429,4 +333,53 @@ void Sort::InTree(Node<T> *root, T arr[]) {
 		arr[index++] = root->data;
 		InTree(root->right, arr);
 	}
+}
+
+//////////////////////////////////////////////////////////////////// 
+int main() {
+	Sort sort;
+	int *arr; 								//需要排序的数组 
+	int width = 0; 							//最大数的位数，用于排列输出结果  
+	int len = LEN; 							//用来求最大数的位数
+	arr = (int *)malloc(LEN * sizeof(int)); //分配空间 
+	if (arr == NULL) {						//空间分配失败 
+		cout << "Malloc failed!" << endl;
+		exit(1);
+	}
+
+	srand(time(NULL));						//设置种子 
+	for (int i = 0; i < LEN; i++) {			//随机生成数字 
+		arr[i] = (rand() % (LEN * 10)) + 1;
+	}
+
+	for (int i = 0; i < LEN; i++) {			//输出排序后的数字 
+		cout << setw(width) << arr[i] << " ";
+		cout << fixed;
+		if ((i + 1) % NUM == 0) {				//每行输出的数字个数 
+			cout << endl;
+		}
+	}
+	cout << endl << endl;
+
+	//sort.SelectSort(arr, LEN);
+	//sort.QuickSort(arr, 0,LEN-1);
+	//sort.HeapSortNew(arr, LEN);
+	sort.QuickSortNew(arr,0, LEN-1);
+	//sort.MergeSort(arr, 0, LEN - 1);
+	//求得最大数的位数，用于排列输出结果 
+	while (len) {
+		width++;
+		len /= 10;
+	}
+
+	for (int i = 0; i < LEN; i++) {			//输出排序后的数字 
+		cout << setw(width) << arr[i] << " ";
+		cout << fixed;
+		if ((i + 1) % NUM == 0) {				//每行输出的数字个数 
+			cout << endl;
+		}
+	}
+
+	cout << endl;
+	return 0;
 }
