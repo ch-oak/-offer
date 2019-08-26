@@ -57,6 +57,16 @@ public:
 		MergeSort(arr, mid + 1, high);
 		Merge(arr, low, mid, high);
 	}
+
+	//归并排序，非递归
+	template<class T>
+	void MergeSortBU(T arr[], int low, int high) {
+		for (int sz = 1; sz <= high; sz = sz + sz) {
+			for (int lo = 0; lo <= high - sz; lo += sz + sz) {
+				Merge(arr, lo, lo + sz - 1, min(high, lo + sz + sz - 1));
+			}
+		}
+	}
 	template <class T>
 	void Merge(T arr[], int low, int mid, int high) {
 		for (int k = low; k <= high; k++)
@@ -364,8 +374,9 @@ int main() {
 	//sort.SelectSort(arr, LEN);
 	//sort.QuickSort(arr, 0,LEN-1);
 	//sort.HeapSortNew(arr, LEN);
-	sort.QuickSortNew(arr,0, LEN-1);
+	//sort.QuickSortNew(arr,0, LEN-1);
 	//sort.MergeSort(arr, 0, LEN - 1);
+	sort.MergeSortBU(arr, 0, LEN - 1);
 	//求得最大数的位数，用于排列输出结果 
 	while (len) {
 		width++;
