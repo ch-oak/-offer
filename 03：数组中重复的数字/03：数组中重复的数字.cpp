@@ -42,7 +42,7 @@ public:
 					break;
 				}
 				else
-					swap(numbers[i], numbers[temp]);
+					swap(numbers[i], numbers[temp]);//每次让一个数字归位，最后会让所有数字归位
 			}
 		}
 		return res;

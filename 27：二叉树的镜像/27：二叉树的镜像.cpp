@@ -26,7 +26,7 @@ public:
 			return;
 		if (pRoot->left == nullptr&&pRoot->right == nullptr)
 			return;
-		//交换所有非叶节点的左右子节点
+		//交换所有非叶节点的左右子节点，从上到下的交换
 		swap(pRoot->left, pRoot->right);
 		if (pRoot->left)
 			Mirror(pRoot->left);
